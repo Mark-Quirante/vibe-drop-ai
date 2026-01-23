@@ -1,10 +1,10 @@
 from mido import Message, MidiFile, MidiTrack
 import random
 
-output_path="C:\\FL-Sample-Library\Vibe Drop AI\poc_melody.mid"
+OUTPUT_PATH = r"C:\FL-Sample-Library\Vibe Drop AI\poc_melody.mid"
 
 def generate_melody(
-        output=output_path,
+        output=OUTPUT_PATH,
         bpm=85,
         bars=4,
         ticks_per_beat=480,
