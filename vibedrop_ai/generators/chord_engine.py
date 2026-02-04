@@ -1,3 +1,4 @@
+import random
 from dataclasses import dataclass
 from typing import List
 from vibedrop_ai.config import ROOT_NOTE
@@ -12,31 +13,42 @@ class ChordEvent:
 def _cm7() -> list[int]:
     return [ROOT_NOTE + i for i in (0, 3, 7, 10)]
 
+def _ddimb5() -> list[int]:
+    return [ROOT_NOTE + i for i in (2, 5, 8, 12)]
+
+def _emaj7() -> list[int]:
+    return [ROOT_NOTE + i for i in (3, 7, 10, 14)]
 
 def _fm7() -> list[int]:
     return [ROOT_NOTE + i for i in (5, 8, 12, 15)]
 
+def _gm7() -> list[int]:
+    return [ROOT_NOTE + i for i in (7, 10, 14, 17)]
 
 def _abmaj7() -> list[int]:
     return [ROOT_NOTE + i for i in (8, 12, 15, 19)]
 
+def _bb7() -> list[int]:
+    return [ROOT_NOTE + i for i in (10, 14, 17, 20)]
 
-def _gm7() -> list[int]:
-    return [ROOT_NOTE + i for i in (7, 10, 14, 17)]
-
+CHORD_POOL = [
+    _cm7(),
+    _ddimb5(),
+    _emaj7(),
+    _fm7(),
+    _gm7(),
+    _abmaj7(),
+    _bb7(),
+]
 
 # generate chord progression
-def generate_cm_chord_prog(bars):
-    base_progression = [
-        _cm7(),
-        _fm7(),
-        _abmaj7(),
-        _gm7(),
-    ]
+def generate_cm_chord_prog(bars: int) -> List[ChordEvent]:
 
     events: list[ChordEvent] = []
     for bar_index in range(bars):
-        chord_notes = base_progression[bar_index % len(base_progression)]
+        chord_fn = random.choice(CHORD_POOL)
+        chord_notes = chord_fn
+
         events.append(
             ChordEvent(
                 start_bar=bar_index,
