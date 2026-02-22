@@ -1,0 +1,9 @@
+Metadata-Version: 2.4
+Name: vibedrop-ai
+Version: 0.2.0
+Requires-Python: >=3.8
+License-File: LICENSE
+Requires-Dist: mido
+Dynamic: license-file
+Dynamic: requires-dist
+Dynamic: requires-python

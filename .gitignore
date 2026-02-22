@@ -14,3 +14,9 @@ __pycache__/
 # OS files
 .DS_Store
 Thumbs.db
+
+# Generated MIDI output
+output/
+
+# Gemini
+.gemini/

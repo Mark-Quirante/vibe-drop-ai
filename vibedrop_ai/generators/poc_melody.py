@@ -1,23 +1,23 @@
-from mido import Message, MidiFile, MidiTrack
+from mido import Message, MidiFile, MidiTrack, MetaMessage, bpm2tempo
 import random
 
-OUTPUT_PATH = r"C:\FL-Sample-Library\Vibe Drop AI\poc_melody.mid"
+from vibedrop_ai.config import TICKS_PER_BEAT, ROOT_NOTE
+
 
 def generate_melody(
-        output=OUTPUT_PATH,
+        output,
         bpm=85,
         bars=4,
-        ticks_per_beat=480,
+        ticks_per_beat=TICKS_PER_BEAT,
 ):
     # Cmin pentatonic scale
-    scale = [60, 63, 65, 67, 70] # C4 Eb4 F4 G4 Bb4
+    scale = [ROOT_NOTE, ROOT_NOTE + 3, ROOT_NOTE + 5, ROOT_NOTE + 7, ROOT_NOTE + 10]
 
-    mid=MidiFile(ticks_per_beat=ticks_per_beat)
+    mid = MidiFile(ticks_per_beat=ticks_per_beat)
     track = MidiTrack()
     mid.tracks.append(track)
 
     # tempo
-    from mido import MetaMessage, bpm2tempo
     track.append(MetaMessage('set_tempo', tempo=bpm2tempo(bpm), time=0))
 
     # rhythm

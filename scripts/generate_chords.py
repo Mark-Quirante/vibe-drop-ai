@@ -1,14 +1,17 @@
-# scripts/generate_chords_only.py
+"""Generate a 4-bar RnB chord progression and export as MIDI."""
 
+import os
 from mido import MidiFile
-from vibedrop_ai.config import TICKS_PER_BEAT, DEFAULT_TIME_SIGNATURE
+from vibedrop_ai.config import TICKS_PER_BEAT, DEFAULT_TIME_SIGNATURE, OUTPUT_DIR
 from vibedrop_ai.generators.chord_engine import generate_cm_chord_prog
 from vibedrop_ai.music.midi_io import write_chord_track
 
-OUTPUT_PATH = r"C:\FL-Sample-Library\Vibe Drop AI\poc_chords_only.mid"
+OUTPUT_PATH = os.path.join(OUTPUT_DIR, "poc_chords_only.mid")
 
 
 def main():
+    os.makedirs(OUTPUT_DIR, exist_ok=True)
+
     mid = MidiFile(ticks_per_beat=TICKS_PER_BEAT)
 
     chords = generate_cm_chord_prog(bars=4)
