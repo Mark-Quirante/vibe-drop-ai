@@ -1,4 +1,4 @@
-# 🎹 Vibe Drop AI
+# 🎹 Vibe Drop AI (v0.2.0)
 
 > An AI-assisted MIDI generator for RnB and Lo-Fi production.
 
@@ -6,9 +6,11 @@ Vibe Drop AI creates soulful chord progressions and pentatonic melodies, allowin
 
 ## ✨ Features
 
+* **Vibe Drop UI:** A modern Graphical User Interface to control all parameters without touching code.
+* **Universal Key Support:** Generate music in any of the 12 chromatic keys (C through B).
+* **Major & Minor Modes:** Now supports both Major and Minor scales and chord progressions.
 * **RnB Chord Engine:** Generates 4-bar progressions using rich voicings (m7, maj7, dimb5).
 * **Generative Melody:** Uses stepwise bias and rhythmic variety to create natural-sounding pentatonic leads.
-* **DAW Ready:** Exports standard MIDI files (`.mid`) optimized for FL Studio and other major DAWs.
 
 ## 🛠 Installation
 
@@ -21,25 +23,33 @@ cd vibedrop-ai
 2. **Install dependencies:**
 ```bash
 pip install -r requirements.txt
+pip install -e .
 ```
 
 ## 🚀 Usage
 
-### 1. Generate Chords
+### 1. Launch Vibe Drop UI (Recommended)
 
-To generate a 4-bar RnB chord progression:
+To open the graphical dashboard:
 
 ```bash
-python scripts/generate_chords.py
+python vibedrop_ui.py
 ```
 
-### 2. Generate Melody
+From the UI, you can select the Key, Mode (Major/Minor), BPM, and Bar length, then click "Generate" to save MIDI files to your desired folder.
 
-To generate a C-Minor pentatonic melody:
+### 2. Generate via CLI
+
+You can still use the traditional script-based generation:
 
 ```bash
+# Generate a 4-bar RnB chord progression
+python scripts/generate_chords.py
+
+# Generate a C-Minor pentatonic melody
 python scripts/generate_midi.py
 ```
+
 
 Generated MIDI files are saved to the `output/` directory by default.
 

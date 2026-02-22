@@ -3,6 +3,7 @@ README.md
 setup.py
 vibedrop_ai/__init__.py
 vibedrop_ai/config.py
+vibedrop_ai/music_theory.py
 vibedrop_ai.egg-info/PKG-INFO
 vibedrop_ai.egg-info/SOURCES.txt
 vibedrop_ai.egg-info/dependency_links.txt

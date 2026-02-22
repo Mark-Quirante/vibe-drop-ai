@@ -1,3 +1,3 @@
-# Will be filled with project dependencies
-
+# Project dependencies
 mido
+customtkinter
