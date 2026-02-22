@@ -1,7 +1,20 @@
+"""
+Chord progression generator.
+
+Builds diatonic 7th-chord progressions for any root note,
+using interval templates from music_theory.py.
+"""
+
 import random
 from dataclasses import dataclass
 from typing import List
-from vibedrop_ai.config import ROOT_NOTE
+
+from vibedrop_ai.music_theory import (
+    MINOR_CHORD_TEMPLATES,
+    MAJOR_CHORD_TEMPLATES,
+    build_chord,
+)
+
 
 @dataclass
 class ChordEvent:
@@ -9,45 +22,34 @@ class ChordEvent:
     duration_bars: float
     notes: List[int]
 
-# chords
-def _cm7() -> list[int]:
-    return [ROOT_NOTE + i for i in (0, 3, 7, 10)]
 
-def _ddimb5() -> list[int]:
-    return [ROOT_NOTE + i for i in (2, 5, 8, 12)]
+def generate_chord_prog(
+    root_note: int,
+    bars: int,
+    mode: str = "minor",
+) -> List[ChordEvent]:
+    """Generate a random diatonic chord progression.
 
-def _emaj7() -> list[int]:
-    return [ROOT_NOTE + i for i in (3, 7, 10, 14)]
+    Args:
+        root_note: MIDI note number for the key root (e.g. 60 = C4).
+        bars:      Number of bars (one chord per bar).
+        mode:      ``"minor"`` or ``"major"``.
 
-def _fm7() -> list[int]:
-    return [ROOT_NOTE + i for i in (5, 8, 12, 15)]
+    Returns:
+        A list of :class:`ChordEvent` objects.
+    """
+    templates = (
+        MINOR_CHORD_TEMPLATES if mode == "minor" else MAJOR_CHORD_TEMPLATES
+    )
 
-def _gm7() -> list[int]:
-    return [ROOT_NOTE + i for i in (7, 10, 14, 17)]
-
-def _abmaj7() -> list[int]:
-    return [ROOT_NOTE + i for i in (8, 12, 15, 19)]
-
-def _bb7() -> list[int]:
-    return [ROOT_NOTE + i for i in (10, 14, 17, 20)]
-
-CHORD_POOL = [
-    _cm7(),
-    _ddimb5(),
-    _emaj7(),
-    _fm7(),
-    _gm7(),
-    _abmaj7(),
-    _bb7(),
-]
-
-# generate chord progression
-def generate_cm_chord_prog(bars: int) -> List[ChordEvent]:
+    chord_pool = [
+        build_chord(root_note + t["degree"], t["intervals"])
+        for t in templates
+    ]
 
     events: list[ChordEvent] = []
     for bar_index in range(bars):
-        chord_fn = random.choice(CHORD_POOL)
-        chord_notes = chord_fn
+        chord_notes = random.choice(chord_pool)
 
         events.append(
             ChordEvent(

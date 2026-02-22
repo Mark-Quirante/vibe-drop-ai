@@ -1,0 +1,17 @@
+LICENSE
+README.md
+setup.py
+vibedrop_ai/__init__.py
+vibedrop_ai/config.py
+vibedrop_ai/music_theory.py
+vibedrop_ai.egg-info/PKG-INFO
+vibedrop_ai.egg-info/SOURCES.txt
+vibedrop_ai.egg-info/dependency_links.txt
+vibedrop_ai.egg-info/requires.txt
+vibedrop_ai.egg-info/top_level.txt
+vibedrop_ai/generators/__init__.py
+vibedrop_ai/generators/chord_engine.py
+vibedrop_ai/generators/melody_engine.py
+vibedrop_ai/generators/poc_melody.py
+vibedrop_ai/music/__init__.py
+vibedrop_ai/music/midi_io.py
